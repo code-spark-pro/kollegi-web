@@ -34,3 +34,22 @@ python -m http.server 8080
 - Пароль: `admin123`
 
 Данные прототипа сохраняются в `localStorage` браузера. Авторизация на клиенте предназначена только для демонстрационного этапа. Для публичного релиза нужны серверная аутентификация, база данных и API.
+
+## Развертывание на Render
+
+Проект является статическим сайтом. В Render используйте **Blueprint** или **Static Site**, а не Web Service.
+
+### Blueprint
+
+1. Откройте Render Dashboard.
+2. Выберите `New` → `Blueprint`.
+3. Подключите репозиторий `code-spark-pro/kollegi-web`.
+4. Render прочитает `render.yaml` и создаст статический сайт.
+
+### Ручная настройка Static Site
+
+- Build Command: `echo "Static site - no build required"`
+- Publish Directory: `.`
+- Start Command: отсутствует
+
+Если существующий сервис запускает команду `0`, удалите этот Web Service и создайте новый типом **Static Site**. Изменить Web Service в Static Site после создания нельзя.
