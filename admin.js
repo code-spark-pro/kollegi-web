@@ -2,6 +2,12 @@ const adminState = getKollegiState();
 const adminEsc = (value) => String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
 const adminAccount = (id) => adminState.accounts.find((item) => item.id === Number(id));
 
+function updateAdminDeviceMode() {
+  const width = window.innerWidth;
+  document.body.dataset.device = width <= 600 ? 'phone' : width <= 1024 ? 'tablet' : 'desktop';
+  document.documentElement.style.setProperty('--viewport-height', `${window.visualViewport?.height || window.innerHeight}px`);
+}
+
 function adminToast(message) {
   const toast = document.querySelector('#toast'); toast.textContent = message; toast.classList.add('show');
   setTimeout(() => toast.classList.remove('show'), 2400);
@@ -86,3 +92,6 @@ document.querySelector('#adminLoginForm').addEventListener('submit', (event) => 
 document.querySelectorAll('#adminNav button').forEach((button) => button.addEventListener('click', () => renderAdmin(button.dataset.section)));
 document.querySelector('#adminLogout').addEventListener('click', () => { sessionStorage.removeItem('kollegiAdmin'); location.reload(); });
 if (sessionStorage.getItem('kollegiAdmin') === 'true') enterAdmin();
+updateAdminDeviceMode();
+window.addEventListener('resize', updateAdminDeviceMode, { passive: true });
+window.visualViewport?.addEventListener('resize', updateAdminDeviceMode, { passive: true });

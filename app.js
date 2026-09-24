@@ -12,6 +12,16 @@ const I18N = {
   zh: { nav: ['首页', '匹配', '创意中心', '项目', '消息'], mobile: ['首页', '伙伴', '创意', '项目', '聊天'], search: '按技能、城市或商业目标寻找合作伙伴', profile: '我的资料', homeKick: '您的工作空间', hello: '您好', homeSub: '新的商业合作从这里开始。', matchesKick: '智能匹配', matchesTitle: '推荐合作伙伴', matchesSub: '按专业能力、地区和商业目标寻找合作伙伴。', ideasKick: '创意库', ideasTitle: '创意中心', ideasSub: '分享问题，寻找合作者，将创意转化为项目。', projectsKick: '协同工作', projectsTitle: '我的项目', projectsSub: '在一个地方管理任务、协议和团队进度。', messagesKick: '安全沟通', messagesTitle: '消息', messagesSub: '讨论合作条件，将联系转化为行动。', profileKick: '个人中心', profileTitle: '我的资料', profileSub: '填写专业能力、地区和合作方式。', allCountries: '所有国家', allCities: '所有城市', allFormats: '所有形式', found: '找到合作伙伴', noResults: '暂未找到合适的伙伴，请调整筛选条件。' }
 };
 
+function updateDeviceMode() {
+  const width = window.innerWidth;
+  const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+  const device = width <= 600 ? 'phone' : width <= 1024 ? 'tablet' : 'desktop';
+  document.body.dataset.device = device;
+  document.body.dataset.touch = coarsePointer ? 'true' : 'false';
+  document.body.dataset.orientation = window.innerWidth > window.innerHeight ? 'landscape' : 'portrait';
+  document.documentElement.style.setProperty('--viewport-height', `${window.visualViewport?.height || window.innerHeight}px`);
+}
+
 const $ = (selector) => document.querySelector(selector);
 const esc = (value) => String(value ?? '').replace(/[&<>'"]/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[char]));
 const account = (id) => state.accounts.find((item) => item.id === Number(id));
@@ -350,4 +360,7 @@ $('#quickLanguage').addEventListener('change', (event) => {
 });
 $('.help-button').addEventListener('click', showSupportForm);
 document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeModal(); });
+updateDeviceMode();
+window.addEventListener('resize', updateDeviceMode, { passive: true });
+window.visualViewport?.addEventListener('resize', updateDeviceMode, { passive: true });
 initLogin();
