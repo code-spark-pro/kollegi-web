@@ -87,6 +87,19 @@ function initLogin() {
     enterApp(user);
   });
 
+  $('#vkLoginButton').addEventListener('click', () => {
+    const vk = window.KOLLEGI_VK || {};
+    if (!vk.clientId) {
+      openModal(`<h2>Вход через VK ID</h2><p class="muted">Кнопка готова, но для подключения нужно указать Client ID VK-приложения и зарегистрировать адрес callback.</p><div class="vk-steps"><b>Адрес callback для VK:</b><code>${esc(vk.redirectUri || 'vk-callback.html')}</code><span>После настройки пользователь войдёт через личный кабинет ВКонтакте без передачи пароля приложению.</span></div><button class="button button--primary button--wide" data-vk-help>Понятно</button>`);
+      $('[data-vk-help]').addEventListener('click', closeModal);
+      return;
+    }
+    const state = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`;
+    sessionStorage.setItem('kollegiVkState', state);
+    const params = new URLSearchParams({ client_id: vk.clientId, redirect_uri: vk.redirectUri, response_type: 'code', state, scope: 'email', v: '5.199' });
+    window.location.href = `https://id.vk.com/authorize?${params}`;
+  });
+
   const savedId = sessionStorage.getItem('kollegiUser');
   if (savedId && account(savedId) && !(state.blocked || []).includes(Number(savedId))) enterApp(account(savedId));
 }

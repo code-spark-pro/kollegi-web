@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>VK ID — вход в Коллеги</title><link rel="stylesheet" href="styles.css"></head>
+<body class="callback-page"><main class="callback-card"><div class="brand"><span>К</span> коллеги</div><h1>Авторизация VK ID</h1><p id="callbackMessage" class="muted">Проверяем ответ VK ID…</p><a class="button button--primary" href="index.html">Вернуться ко входу <span>→</span></a></main><script>
+const params = new URLSearchParams(location.search);
+const expected = sessionStorage.getItem('kollegiVkState');
+const message = document.querySelector('#callbackMessage');
+if (params.get('error')) message.textContent = `Вход отменён: ${params.get('error_description') || params.get('error')}`;
+else if (!params.get('code') || !expected || params.get('state') !== expected) message.textContent = 'Не удалось подтвердить запрос авторизации. Повторите вход.';
+else { sessionStorage.removeItem('kollegiVkState'); message.textContent = 'Код получен. Для production-сценария backend должен обменять его на данные профиля VK ID.'; }
+</script></body>
+</html>

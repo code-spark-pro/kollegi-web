@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="vk-config.js"></script>
 </head>
 <body data-device="desktop">
   <div id="toast" class="toast" role="status"></div>
@@ -39,6 +40,8 @@
         <label>Логин<input id="loginInput" autocomplete="username" placeholder="например, anna" required></label>
         <label>Пароль<input id="passwordInput" type="password" autocomplete="current-password" placeholder="••••••••" required></label>
         <button class="button button--primary button--wide" type="submit">Войти <span>→</span></button>
+        <div class="login-divider"><span>или</span></div>
+        <button id="vkLoginButton" class="vk-login-button" type="button"><span class="vk-logo">VK</span><span>Войти через VK ID</span><span>↗</span></button>
         <div class="demo-block">
           <span>Тестовые кабинеты</span>
           <div id="demoAccounts" class="demo-accounts"></div>
