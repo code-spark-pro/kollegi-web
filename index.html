@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173f35">
+  <title>Коллеги — идеи находят людей</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status"></div>
+
+  <main id="loginView" class="login-page">
+    <section class="login-story">
+      <a class="brand brand--light" href="#"><span>К</span> коллеги</a>
+      <div class="story-copy">
+        <p class="eyebrow">Профессиональный нетворкинг</p>
+        <h1>Идеи находят<br><i>своих людей.</i></h1>
+        <p>Не должности и резюме, а компетенции, любопытство и готовность делать вместе.</p>
+      </div>
+      <div class="story-stats">
+        <div><b>1 284</b><span>идеи обсуждают</span></div>
+        <div><b>367</b><span>проектов в работе</span></div>
+        <div><b>91%</b><span>полезных мэтчей</span></div>
+      </div>
+      <div class="orbit orbit--one"></div><div class="orbit orbit--two"></div>
+    </section>
+
+    <section class="login-panel">
+      <form id="loginForm" class="login-card">
+        <div>
+          <p class="eyebrow eyebrow--dark">Добро пожаловать</p>
+          <h2>Войти в кабинет</h2>
+          <p class="muted">Выберите тестовый профиль или введите данные.</p>
+        </div>
+        <label>Логин<input id="loginInput" autocomplete="username" placeholder="например, anna" required></label>
+        <label>Пароль<input id="passwordInput" type="password" autocomplete="current-password" placeholder="••••••••" required></label>
+        <button class="button button--primary button--wide" type="submit">Войти <span>→</span></button>
+        <div class="demo-block">
+          <span>Тестовые кабинеты</span>
+          <div id="demoAccounts" class="demo-accounts"></div>
+          <small>Пароль для всех: <b>demo123</b></small>
+        </div>
+        <a class="admin-link" href="admin.html">Открыть панель администратора</a>
+      </form>
+    </section>
+  </main>
+
+  <main id="appView" class="app hidden">
+    <aside id="sidebar" class="sidebar">
+      <a class="brand" href="#"><span>К</span> коллеги</a>
+      <nav id="mainNav" class="nav">
+        <button data-page="home" class="active"><span>⌂</span><i class="nav-label">Главная</i></button>
+        <button data-page="matches"><span>◇</span><i class="nav-label">Мэтчи</i> <b id="matchBadge">3</b></button>
+        <button data-page="ideas"><span>✦</span><i class="nav-label">Idea Hub</i></button>
+        <button data-page="projects"><span>▦</span><i class="nav-label">Проекты</i></button>
+        <button data-page="messages"><span>○</span><i class="nav-label">Сообщения</i> <b>2</b></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <button class="profile-mini" data-page="profile">
+          <span id="sideAvatar" class="avatar"></span>
+          <span><b id="sideName"></b><small>Мой профиль</small></span>
+        </button>
+        <button id="logoutButton" class="logout" title="Выйти">↗</button>
+      </div>
+    </aside>
+
+    <section class="content-shell">
+      <header class="topbar">
+        <button id="menuButton" class="menu-button" aria-label="Открыть меню">☰</button>
+        <div class="search"><span>⌕</span><input id="globalSearch" placeholder="Найти людей, идеи, навыки"></div>
+        <div class="top-actions"><select id="quickLanguage" class="language-select" aria-label="Язык кабинета"><option value="ru">RU</option><option value="en">EN</option><option value="zh">中文</option></select><button class="icon-button help-button" aria-label="Помощь">?</button><button class="icon-button notification" aria-label="Уведомления">♢</button></div>
+      </header>
+      <div id="pageContent" class="page-content"></div>
+    </section>
+    <nav id="mobileNav" class="mobile-nav" aria-label="Мобильная навигация">
+      <button data-page="home"><span>⌂</span><small>Главная</small></button><button data-page="matches"><span>◇</span><small>Коллеги</small></button><button data-page="ideas"><span>✦</span><small>Идеи</small></button><button data-page="projects"><span>▦</span><small>Проекты</small></button><button data-page="messages"><span>○</span><small>Чаты</small></button>
+    </nav>
+  </main>
+
+  <div id="modal" class="modal hidden" aria-modal="true" role="dialog">
+    <div class="modal-card">
+      <button id="modalClose" class="modal-close">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Коллеги — администрирование</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+  <main id="adminLogin" class="admin-login">
+    <form id="adminLoginForm" class="admin-login-card">
+      <a class="brand" href="index.html"><span>К</span> коллеги</a>
+      <p class="eyebrow eyebrow--dark">Служебный доступ</p><h1>Панель<br>администратора</h1><p class="muted">Управление участниками, идеями и безопасностью сообщества.</p>
+      <label>Логин<input name="login" value="admin" required></label><label>Пароль<input name="password" type="password" placeholder="admin123" required></label>
+      <button class="button button--primary button--wide">Войти <span>→</span></button><small>Тестовый доступ: <b>admin / admin123</b></small>
+    </form>
+  </main>
+  <main id="adminApp" class="admin-app hidden">
+    <aside class="admin-sidebar"><a class="brand brand--light" href="index.html"><span>К</span> коллеги</a><div><small>Панель управления</small><h2>Сообщество</h2></div><nav id="adminNav"><button class="active" data-section="overview">Обзор</button><button data-section="users">Участники</button><button data-section="ideas">Идеи</button><button data-section="moderation">Модерация</button><button data-section="support">Поддержка</button></nav><button id="adminLogout" class="button button--lime">Выйти</button></aside>
+    <section class="admin-content"><header><div><p>Режим администратора</p><b>Алексей · главный администратор</b></div><a class="button button--soft" href="index.html">← На сайт</a></header><div id="adminPage" class="admin-page"></div></section>
+  </main>
+  <div id="toast" class="toast"></div><script src="data.js"></script><script src="admin.js"></script>
+</body>
+</html>
